@@ -6,10 +6,10 @@ import initPassport from "./passport";
 //Init DB connection with Prisma
 const prisma = new PrismaClient();
 
-//Init userService
+//Init repositories
 export const userRepository = new UserPrismaRepository(prisma);
 
-//Init passport config and inject userService
+//Init passport config and inject userRepository
 initPassport(userRepository);
 
 //Export express App
