@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  email       String      @unique
+  displayName String
+  googleId    String?     @unique
+  avatarUrl   String?
+  dashboards  Dashboard[]
+}
+
+model Dashboard {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  title     String
+  isPublic  Boolean
+  tasks     Task[]
+  //User foreign key
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  createdAt   DateTime   @default(now())
+  title       String
+  content     String
+  category    String
+  labels      String[]
+  colorLabel  String?
+  //Dashboard foreign key
+  Dashboard   Dashboard? @relation(fields: [dashboardId], references: [id])
+  dashboardId String?
+}
