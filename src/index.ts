@@ -1,10 +1,19 @@
-import { PrismaClient } from "@prisma/client";
+require("dotenv").config();
+import app from "./bootstrap/index";
+import auth from "./routes/auth";
 
 async function main() {
-	const prisma = new PrismaClient();
+	const PORT = process.env.PORT || 5000;
 
-	const users = await prisma.user.findMany();
-	console.log(users);
+	app.use("/auth", auth);
+
+	app.get("/", (_, res) => {
+		res.send("It works! Hello");
+	});
+
+	app.listen(PORT, () => {
+		console.log(`Express listening on port ${PORT}`);
+	});
 }
 
 main();
