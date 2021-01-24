@@ -1,6 +1,6 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth";
-import PassportAuthController from "../../controllers/auth/PassportAuthController";
+import googleAuthController from "../../controllers/auth/googleAuthController";
 import IUserRepository from "../../repositories/user/IUserRepository";
 
 export default function (userRepository: IUserRepository) {
@@ -11,7 +11,7 @@ export default function (userRepository: IUserRepository) {
 				clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 				callbackURL: process.env.GOOGLE_CALLBACK_URL!,
 			},
-			PassportAuthController(userRepository)
+			googleAuthController(userRepository)
 		)
 	);
 }
