@@ -1,11 +1,11 @@
 require("dotenv").config();
 import app from "./bootstrap/index";
-import auth from "./routes/auth";
+import apiRoute from "./routes";
 
 async function main() {
 	const PORT = process.env.PORT || 5000;
 
-	app.use("/auth", auth);
+	app.use("/api", apiRoute);
 
 	app.get("/", (_, res) => {
 		res.send("It works! Hello");
