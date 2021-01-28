@@ -24,7 +24,7 @@ model Dashboard {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   title     String
-  isPublic  Boolean
+  isPublic  Boolean  @default(false)
   tasks     Task[]
   //User foreign key
   User      User?    @relation(fields: [userId], references: [id])
