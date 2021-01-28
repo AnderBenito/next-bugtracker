@@ -1,5 +1,6 @@
 import User from "../../models/User";
 import IUserRepository from "../../repositories/user/IUserRepository";
+import UserNotFound from "./errors/UserNotFound";
 
 export default class UserService {
 	repository: IUserRepository;
@@ -23,7 +24,7 @@ export default class UserService {
 	async findById(id: string) {
 		const user = await this.repository.findById(id);
 
-		if (!user) throw new Error(`User with id ${id} not found`);
+		if (!user) throw new UserNotFound(id);
 
 		return user;
 	}
