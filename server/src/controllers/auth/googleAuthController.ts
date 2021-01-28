@@ -1,17 +1,14 @@
 import GoogleStrategy from "passport-google-oauth";
 import User from "../../models/User";
-import IUserRepository from "../../repositories/user/IUserRepository";
 import UserService from "../../services/UserService";
 
-export default function (userRepository: IUserRepository) {
+export default function (userService: UserService) {
 	return (
 		_: string,
 		__: string,
 		profile: GoogleStrategy.Profile,
 		done: GoogleStrategy.VerifyFunction
 	) => {
-		const userService = new UserService(userRepository);
-
 		const user: User = {
 			displayName: profile.displayName,
 			email: profile.emails![0].value,
