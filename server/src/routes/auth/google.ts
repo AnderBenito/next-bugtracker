@@ -17,7 +17,7 @@ googleRoute.get(
 		console.log(req.user);
 
 		//Redirect to frontend
-		res.send("Google callback");
+		res.redirect("/");
 	}
 );
 
