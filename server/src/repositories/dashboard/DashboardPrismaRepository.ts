@@ -18,4 +18,8 @@ export default class DashboardPrismaRepository implements IDashboardRepository {
 	getById(id: string) {
 		return this.prisma.dashboard.findUnique({ where: { id } });
 	}
+
+	getAll() {
+		return this.prisma.dashboard.findMany();
+	}
 }
