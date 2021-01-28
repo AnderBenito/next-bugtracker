@@ -3,5 +3,5 @@ export default interface Dashboard {
 	createdAt?: Date;
 	title: string;
 	isPublic: boolean;
-	userId?: string;
+	userId: string | null;
 }

@@ -5,12 +5,13 @@ import { userRepository } from "./repositories";
 //Run passport config
 import "../config/passport/googleAuth";
 
+const userService = new UserService(userRepository);
+
 passport.serializeUser((user, done) => {
 	done(null, (user as any).id);
 });
 
 passport.deserializeUser((id, done) => {
-	const userService = new UserService(userRepository);
 	userService
 		.findById(id as string)
 		.then((user) => {
