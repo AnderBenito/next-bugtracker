@@ -19,6 +19,8 @@ export default class DashboardService {
 		const dashboard = await this.repository.getById(id);
 
 		if (!dashboard) throw new DashboardNotFound(id);
+
+		return dashboard;
 	}
 
 	async getAll() {
