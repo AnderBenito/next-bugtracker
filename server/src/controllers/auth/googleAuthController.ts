@@ -1,6 +1,6 @@
 import GoogleStrategy from "passport-google-oauth";
 import User from "../../models/User";
-import UserService from "../../services/UserService";
+import UserService from "../../services/user/UserService";
 
 export default function (userService: UserService) {
 	return (

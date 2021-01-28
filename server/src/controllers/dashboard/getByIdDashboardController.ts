@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import DashboardService from "../../services/DashboardService";
+import DashboardService from "../../services/dashboard/DashboardService";
 
 export default function (dashboardService: DashboardService) {
 	return async (req: Request, res: Response) => {

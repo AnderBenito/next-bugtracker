@@ -1,6 +1,6 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth";
-import UserService from "../../services/UserService";
+import UserService from "../../services/user/UserService";
 import { userRepository } from "../../bootstrap/repositories";
 import googleAuthController from "../../controllers/auth/googleAuthController";
 

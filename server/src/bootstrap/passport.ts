@@ -1,5 +1,5 @@
 import passport from "passport";
-import UserService from "../services/UserService";
+import UserService from "../services/user/UserService";
 import { userRepository } from "./repositories";
 
 //Run passport config
