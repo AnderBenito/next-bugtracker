@@ -9,6 +9,7 @@ const RedisStore = connectRedis(session);
 const app = express();
 
 //Apply middlewares
+app.use(express.json());
 app.use(
 	session({
 		store: new RedisStore({ client: redisClient }),
