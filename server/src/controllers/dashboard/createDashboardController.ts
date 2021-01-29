@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
+import Dashboard from "../../models/Dashboard";
 import DashboardService from "../../services/dashboard/DashboardService";
 
 export default function (dashboardService: DashboardService) {
 	return async (req: Request, res: Response) => {
-		console.log(req.user);
-		const dashboard = req.body;
+		const dashboard: Dashboard = {
+			...req.body,
+			userId: (req.user as any).id,
+		};
 
 		try {
 			const newDashboard = await dashboardService.create(dashboard);
