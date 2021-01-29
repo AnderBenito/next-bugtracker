@@ -9,7 +9,7 @@ export default class UserPrismaRepository implements IUserRepository {
 		this.prisma = prisma;
 	}
 
-	saveUser(user: User) {
+	save(user: User) {
 		return this.prisma.user.create({ data: user });
 	}
 

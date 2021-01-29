@@ -16,7 +16,7 @@ export default class UserService {
 
 		if (foundUser) return foundUser;
 
-		const newUser = await this.repository.saveUser(user);
+		const newUser = await this.repository.save(user);
 
 		return newUser;
 	}
