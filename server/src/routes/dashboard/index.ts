@@ -15,15 +15,15 @@ dashboardRoute.use("/:dashboardId/task", taskDashboardRoute);
 
 //GET
 dashboardRoute.get("/", getAllDashboard(dashboardService));
-dashboardRoute.get("/:id", getByIdDashboard(dashboardService));
+dashboardRoute.get("/:dashboardId", getByIdDashboard(dashboardService));
 
 //POST
 dashboardRoute.post("/", createDashboard(dashboardService));
 
 //PUT
-dashboardRoute.put("/:id", updateDashboard(dashboardService));
+dashboardRoute.put("/:dashboardId", updateDashboard(dashboardService));
 
 //DELETE
-dashboardRoute.delete("/:id", deleteDashboard(dashboardService));
+dashboardRoute.delete("/:dashboardId", deleteDashboard(dashboardService));
 
 export default dashboardRoute;

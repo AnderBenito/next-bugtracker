@@ -3,7 +3,7 @@ import DashboardService from "../../services/dashboard/DashboardService";
 
 export default function (dashboardService: DashboardService) {
 	return async (req: Request, res: Response) => {
-		const { id } = req.params;
+		const { dashboardId: id } = req.params;
 
 		try {
 			const dashboard = await dashboardService.getById(id);
