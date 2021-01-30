@@ -9,10 +9,8 @@ export default class DashboardService {
 		this.repository = repository;
 	}
 
-	async create(dashboard: Dashboard) {
-		const newDashboard = await this.repository.create(dashboard);
-
-		return newDashboard;
+	async getAll() {
+		return await this.repository.getAll();
 	}
 
 	async getById(id: string) {
@@ -23,7 +21,21 @@ export default class DashboardService {
 		return dashboard;
 	}
 
-	async getAll() {
-		return await this.repository.getAll();
+	async create(dashboard: Dashboard) {
+		const newDashboard = await this.repository.create(dashboard);
+
+		return newDashboard;
+	}
+
+	async update(dashboard: Dashboard) {
+		if (!dashboard.id) throw new Error("No id provided");
+
+		return this.repository.update(dashboard);
+	}
+
+	async delete(id: string) {
+		if (!id) throw new Error("No id provided");
+
+		return this.repository.delete(id);
 	}
 }
