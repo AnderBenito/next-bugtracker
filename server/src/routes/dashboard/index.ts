@@ -1,24 +1,26 @@
 import express from "express";
 import { dashboardRepository } from "../../bootstrap/repositories";
-import getByIdDashboardController from "../../controllers/dashboard/getByIdDashboardController";
-import createDashboardController from "../../controllers/dashboard/createDashboardController";
 import DashboardService from "../../services/dashboard/DashboardService";
-import getAllDashboardController from "../../controllers/dashboard/getAllDashboardController";
+import getByIdDashboard from "../../controllers/dashboard/getByIdDashboard";
+import createDashboard from "../../controllers/dashboard/createDashboard";
+import getAllDashboard from "../../controllers/dashboard/getAllDashboard";
+import updateDashboard from "../../controllers/dashboard/updateDashboard";
+import deleteDashboard from "../../controllers/dashboard/deleteDashboard";
 
 const dashboardRoute = express.Router();
 const dashboardService = new DashboardService(dashboardRepository);
 
 //GET
-dashboardRoute.get("/", getAllDashboardController(dashboardService));
-dashboardRoute.get("/:id", getByIdDashboardController(dashboardService));
+dashboardRoute.get("/", getAllDashboard(dashboardService));
+dashboardRoute.get("/:id", getByIdDashboard(dashboardService));
 
 //POST
-dashboardRoute.post("/", createDashboardController(dashboardService));
+dashboardRoute.post("/", createDashboard(dashboardService));
 
 //PUT
-dashboardRoute.put("/:id", createDashboardController(dashboardService));
+dashboardRoute.put("/:id", updateDashboard(dashboardService));
 
 //DELETE
-dashboardRoute.delete("/:id", createDashboardController(dashboardService));
+dashboardRoute.delete("/:id", deleteDashboard(dashboardService));
 
 export default dashboardRoute;
