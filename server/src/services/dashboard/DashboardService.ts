@@ -1,6 +1,7 @@
 import Dashboard from "../../models/Dashboard";
 import IDashboardRepository from "../../repositories/dashboard/IDashboardRepository";
 import DashboardNotFound from "./errors/DashboardNotFound";
+import DashboardUpdateError from "./errors/DashboardUpdateError";
 
 export default class DashboardService {
 	private repository: IDashboardRepository;
@@ -30,12 +31,22 @@ export default class DashboardService {
 	async update(dashboard: Dashboard) {
 		if (!dashboard.id) throw new Error("No id provided");
 
-		return this.repository.update(dashboard);
+		try {
+			return await this.repository.update(dashboard);
+		} catch (error) {
+			console.error(error);
+			throw new DashboardUpdateError(dashboard.id, error.message);
+		}
 	}
 
 	async delete(id: string) {
 		if (!id) throw new Error("No id provided");
 
-		return this.repository.delete(id);
+		try {
+			return await this.repository.delete(id);
+		} catch (error) {
+			console.error(error);
+			throw new DashboardNotFound(id);
+		}
 	}
 }
