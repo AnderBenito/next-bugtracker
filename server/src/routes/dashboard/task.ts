@@ -4,7 +4,7 @@ import createTask from "../../controllers/task/createTask";
 import getAllTaskByDashboardId from "../../controllers/task/getAllTaskByDashboardId";
 import TaskService from "../../services/task/TaskService";
 
-const taskDashboardRoute = express.Router();
+const taskDashboardRoute = express.Router({ mergeParams: true });
 const taskService = new TaskService(taskRepository);
 
 taskDashboardRoute.get("/", getAllTaskByDashboardId(taskService));
