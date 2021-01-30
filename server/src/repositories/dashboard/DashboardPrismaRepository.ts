@@ -9,17 +9,28 @@ export default class DashboardPrismaRepository implements IDashboardRepository {
 		this.prisma = prisma;
 	}
 
-	create(dashboard: Dashboard) {
-		return this.prisma.dashboard.create({
-			data: dashboard,
-		});
+	getAll() {
+		return this.prisma.dashboard.findMany();
 	}
 
 	getById(id: string) {
 		return this.prisma.dashboard.findUnique({ where: { id } });
 	}
 
-	getAll() {
-		return this.prisma.dashboard.findMany();
+	create(dashboard: Dashboard) {
+		return this.prisma.dashboard.create({
+			data: dashboard,
+		});
+	}
+
+	update(dashboard: Dashboard) {
+		return this.prisma.dashboard.update({
+			where: { id: dashboard.id! },
+			data: dashboard,
+		});
+	}
+
+	delete(id: string) {
+		return this.prisma.dashboard.delete({ where: { id } });
 	}
 }
