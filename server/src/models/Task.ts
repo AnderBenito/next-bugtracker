@@ -5,6 +5,6 @@ export default interface Task {
 	content: string;
 	category: string;
 	labels: string[];
-	colorLabel?: string;
-	dashboardId?: string;
+	colorLabel: string | null;
+	dashboardId: string | null;
 }
