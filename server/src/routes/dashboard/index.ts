@@ -6,9 +6,12 @@ import createDashboard from "../../controllers/dashboard/createDashboard";
 import getAllDashboard from "../../controllers/dashboard/getAllDashboard";
 import updateDashboard from "../../controllers/dashboard/updateDashboard";
 import deleteDashboard from "../../controllers/dashboard/deleteDashboard";
+import taskDashboardRoute from "./task";
 
 const dashboardRoute = express.Router();
 const dashboardService = new DashboardService(dashboardRepository);
+
+dashboardRoute.use("/:dashboardId/task", taskDashboardRoute);
 
 //GET
 dashboardRoute.get("/", getAllDashboard(dashboardService));
