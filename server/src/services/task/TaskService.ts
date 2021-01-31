@@ -15,6 +15,10 @@ export default class TaskService {
 		return await this.repository.getAllByDashboardId(dashboardId);
 	}
 
+	async getById(taskId: string) {
+		return await this.repository.getById(taskId);
+	}
+
 	async create(task: Task) {
 		return await this.repository.create(task);
 	}
