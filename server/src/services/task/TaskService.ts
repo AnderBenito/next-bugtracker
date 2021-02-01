@@ -31,4 +31,8 @@ export default class TaskService {
 	async update(task: Task) {
 		return await this.repository.update(task);
 	}
+
+	async delete(taskId: string) {
+		return await this.repository.delete(taskId);
+	}
 }
