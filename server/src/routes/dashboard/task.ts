@@ -11,6 +11,7 @@ import DashboardService from "../../services/dashboard/DashboardService";
 import isAuthorizedWrite from "../../middleware/dashboard/isAuthorizedWrite";
 import getTaskById from "../../controllers/task/getTaskById";
 import updateTask from "../../controllers/task/updateTask";
+import deleteTask from "../../controllers/task/deleteTask";
 
 const taskDashboardRoute = express.Router({ mergeParams: true });
 const taskService = new TaskService(taskRepository);
@@ -38,5 +39,9 @@ taskDashboardRoute.post(
 //PUT--------------------------------
 //Update task by Id
 taskDashboardRoute.put("/:taskId", updateTask(taskService));
+
+//DELETE-----------------------------
+//Delete task by Id
+taskDashboardRoute.delete("/:taskId", deleteTask(taskService));
 
 export default taskDashboardRoute;
