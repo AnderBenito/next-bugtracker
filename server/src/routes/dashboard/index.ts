@@ -1,6 +1,4 @@
 import express from "express";
-import { dashboardRepository } from "../../bootstrap/repositories";
-import DashboardService from "../../services/dashboard/DashboardService";
 import getByIdDashboard from "../../controllers/dashboard/getByIdDashboard";
 import createDashboard from "../../controllers/dashboard/createDashboard";
 import getAllDashboard from "../../controllers/dashboard/getAllDashboard";
@@ -9,9 +7,9 @@ import deleteDashboard from "../../controllers/dashboard/deleteDashboard";
 import taskDashboardRoute from "./task";
 import isAuthorizedRead from "../../middleware/dashboard/isAuthorizedRead";
 import isAuthorizedWrite from "../../middleware/dashboard/isAuthorizedWrite";
+import { dashboardService } from "../../bootstrap/services";
 
 const dashboardRoute = express.Router();
-const dashboardService = new DashboardService(dashboardRepository);
 
 dashboardRoute.use("/:dashboardId/task", taskDashboardRoute);
 
