@@ -1,21 +1,21 @@
 import express from "express";
 import isAuthorizedRead from "../../middleware/dashboard/isAuthorizedRead";
 import createTask from "../../controllers/task/createTask";
-import getAllTaskByDashboardId from "../../controllers/task/getAllTaskByDashboardId";
 import isAuthorizedWrite from "../../middleware/dashboard/isAuthorizedWrite";
 import getTaskById from "../../controllers/task/getTaskById";
 import updateTask from "../../controllers/task/updateTask";
 import deleteTask from "../../controllers/task/deleteTask";
 import { dashboardService, taskService } from "../../bootstrap/services";
+import getAllTaskByListId from "../../controllers/task/getAllTaskByListId";
 
 const taskDashboardRoute = express.Router({ mergeParams: true });
 
 //GET--------------------------------
-//Get all tasks by dashboard ID
+//Get all tasks by list ID
 taskDashboardRoute.get(
 	"/",
 	isAuthorizedRead(dashboardService),
-	getAllTaskByDashboardId(taskService)
+	getAllTaskByListId(taskService)
 );
 
 //Get task in dashboard by taskID
