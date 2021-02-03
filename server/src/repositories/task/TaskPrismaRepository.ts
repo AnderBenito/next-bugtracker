@@ -16,8 +16,8 @@ export default class TaskPrismaRepository implements ITaskRepository {
 		return this.prisma.task.findUnique({ where: { id } });
 	}
 
-	getAllByDashboardId(dashboardId: string) {
-		return this.prisma.task.findMany({ where: { dashboardId } });
+	getAllByListId(listId: string) {
+		return this.prisma.task.findMany({ where: { listId } });
 	}
 
 	create(task: Task) {
