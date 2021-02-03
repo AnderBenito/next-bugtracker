@@ -12,8 +12,8 @@ export default class TaskService {
 		return await this.repository.getAll();
 	}
 
-	async getAllByDashboardId(dashboardId: string) {
-		return await this.repository.getAllByDashboardId(dashboardId);
+	async getAllByListId(listId: string) {
+		return await this.repository.getAllByListId(listId);
 	}
 
 	async getById(taskId: string) {
