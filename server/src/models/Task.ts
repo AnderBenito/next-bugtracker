@@ -6,5 +6,5 @@ export default interface Task {
 	category: string;
 	labels: string[];
 	colorLabel: string | null;
-	dashboardId: string | null;
+	listId: string | null;
 }
