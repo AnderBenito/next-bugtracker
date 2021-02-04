@@ -1,12 +1,12 @@
 import express from "express";
 import isAuthorizedRead from "../../middleware/dashboard/isAuthorizedRead";
-import createTask from "../../controllers/task/createTask";
+import create from "../../controllers/task/create";
 import isAuthorizedWrite from "../../middleware/dashboard/isAuthorizedWrite";
-import getTaskById from "../../controllers/task/getTaskById";
-import updateTask from "../../controllers/task/updateTask";
-import deleteTask from "../../controllers/task/deleteTask";
+import getById from "../../controllers/task/getById";
+import update from "../../controllers/task/update";
+import deleteTask from "../../controllers/task/delete";
 import { dashboardService, taskService } from "../../bootstrap/services";
-import getAllTaskByListId from "../../controllers/task/getAllTaskByListId";
+import getAllByListId from "../../controllers/task/getAllByListId";
 
 const taskListRoute = express.Router({ mergeParams: true });
 
@@ -15,14 +15,14 @@ const taskListRoute = express.Router({ mergeParams: true });
 taskListRoute.get(
 	"/",
 	isAuthorizedRead(dashboardService),
-	getAllTaskByListId(taskService)
+	getAllByListId(taskService)
 );
 
 //Get task in dashboard by taskID
 taskListRoute.get(
 	"/:taskId",
 	isAuthorizedRead(dashboardService),
-	getTaskById(taskService)
+	getById(taskService)
 );
 
 //POST-------------------------------
@@ -30,7 +30,7 @@ taskListRoute.get(
 taskListRoute.post(
 	"/",
 	isAuthorizedWrite(dashboardService),
-	createTask(taskService)
+	create(taskService)
 );
 
 //PUT--------------------------------
@@ -38,7 +38,7 @@ taskListRoute.post(
 taskListRoute.put(
 	"/:taskId",
 	isAuthorizedWrite(dashboardService),
-	updateTask(taskService)
+	update(taskService)
 );
 
 //DELETE-----------------------------
