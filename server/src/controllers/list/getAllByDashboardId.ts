@@ -6,7 +6,7 @@ export default function (listService: ListService) {
 		const { dashboardId } = req.params;
 
 		try {
-			const lists = await listService.getAllByDashboardId(dashboardId);
+			const lists = await listService.getAllWithTasksByDashboardId(dashboardId);
 			res.status(200).send(lists);
 		} catch (error) {
 			res.status(400).send(error.message);
