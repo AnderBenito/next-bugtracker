@@ -1,3 +1,5 @@
+import List from "./List";
+
 export default interface Dashboard {
 	id?: string;
 	createdAt?: Date;
@@ -5,4 +7,8 @@ export default interface Dashboard {
 	color: string | null;
 	isPublic: boolean;
 	userId: string | null;
+}
+
+export interface DashboardLists extends Dashboard {
+	lists?: List[];
 }
