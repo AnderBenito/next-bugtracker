@@ -4,14 +4,14 @@ import createDashboard from "../../controllers/dashboard/createDashboard";
 import getAllDashboard from "../../controllers/dashboard/getAllDashboard";
 import updateDashboard from "../../controllers/dashboard/updateDashboard";
 import deleteDashboard from "../../controllers/dashboard/deleteDashboard";
-import taskDashboardRoute from "./task";
 import isAuthorizedRead from "../../middleware/dashboard/isAuthorizedRead";
 import isAuthorizedWrite from "../../middleware/dashboard/isAuthorizedWrite";
 import { dashboardService } from "../../bootstrap/services";
+import listDashboardRoute from "../list/listInDashboard";
 
 const dashboardRoute = express.Router();
 
-dashboardRoute.use("/:dashboardId/task", taskDashboardRoute);
+dashboardRoute.use("/:dashboardId/list", listDashboardRoute);
 
 //GET
 dashboardRoute.get("/", getAllDashboard(dashboardService));
