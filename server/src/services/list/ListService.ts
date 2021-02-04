@@ -1,5 +1,6 @@
 import List from "../../models/List";
 import IListRepository from "../../repositories/list/IListRepository";
+import ListCreateError from "./errors/ListCreateError";
 import ListNotFound from "./errors/ListNotFound";
 
 export default class ListService {
@@ -25,7 +26,12 @@ export default class ListService {
 	}
 
 	async create(list: List) {
-		return await this.repository.create(list);
+		try {
+			return await this.repository.create(list);
+		} catch (error) {
+			console.error(error.message);
+			throw new ListCreateError(error.message);
+		}
 	}
 
 	async update(list: List) {
