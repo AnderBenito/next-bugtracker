@@ -12,12 +12,26 @@ export default class ListPrismaRepository implements IListRepository {
 		return this.prisma.list.findMany();
 	}
 
-	getById(id: string) {
-		return this.prisma.list.findUnique({ where: { id } });
+	getAllWithTasks() {
+		return this.prisma.list.findMany({ include: { tasks: true } });
+	}
+
+	getAllWithTasksByDashboardId(dashboardId: string) {
+		return this.prisma.list.findMany({
+			where: { dashboardId },
+			include: { tasks: true },
+		});
 	}
 
 	getAllByDashboardId(dashboardId: string) {
 		return this.prisma.list.findMany({ where: { dashboardId } });
+	}
+
+	getById(id: string) {
+		return this.prisma.list.findUnique({
+			where: { id },
+			include: { tasks: true },
+		});
 	}
 
 	create(list: List) {

@@ -13,8 +13,16 @@ export default class ListService {
 		return await this.repository.getAll();
 	}
 
+	async getAllWithTasks() {
+		return await this.repository.getAllWithTasks();
+	}
+
 	async getAllByDashboardId(dashboardId: string) {
 		return await this.repository.getAllByDashboardId(dashboardId);
+	}
+
+	async getAllWithTasksByDashboardId(dashboardId: string) {
+		return await this.repository.getAllWithTasksByDashboardId(dashboardId);
 	}
 
 	async getById(listId: string) {

@@ -14,6 +14,10 @@ export default class DashboardService {
 		return await this.repository.getAll();
 	}
 
+	async getAllByUserId(userId: string) {
+		return await this.repository.getAllByUserId(userId);
+	}
+
 	async getById(id: string) {
 		const dashboard = await this.repository.getById(id);
 
