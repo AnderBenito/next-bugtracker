@@ -27,9 +27,9 @@ model Dashboard {
   isPublic  Boolean  @default(false)
   color     String?
   //User foreign key
-  User      User?    @relation(fields: [userId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
   userId    String?
-  List      List[]
+  lists     List[]
 }
 
 model List {
@@ -37,9 +37,10 @@ model List {
   createdAt   DateTime   @default(now())
   title       String
   color       String?
-  Dashboard   Dashboard? @relation(fields: [dashboardId], references: [id])
+  tasks       Task[]
+  //Dashboard foreign key
+  dashboard   Dashboard? @relation(fields: [dashboardId], references: [id])
   dashboardId String?
-  Task        Task[]
 }
 
 model Task {
@@ -50,7 +51,7 @@ model Task {
   category   String
   labels     String[]
   colorLabel String?
-  //Dashboard foreign key
-  List       List?    @relation(fields: [listId], references: [id])
+  //List foreign key
+  list       List?    @relation(fields: [listId], references: [id])
   listId     String?
 }
