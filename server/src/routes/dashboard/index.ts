@@ -1,9 +1,9 @@
 import express from "express";
-import getByIdDashboard from "../../controllers/dashboard/getByIdDashboard";
-import createDashboard from "../../controllers/dashboard/createDashboard";
-import getAllDashboard from "../../controllers/dashboard/getAllDashboard";
-import updateDashboard from "../../controllers/dashboard/updateDashboard";
-import deleteDashboard from "../../controllers/dashboard/deleteDashboard";
+import getById from "../../controllers/dashboard/getById";
+import create from "../../controllers/dashboard/create";
+import getAll from "../../controllers/dashboard/getAll";
+import update from "../../controllers/dashboard/update";
+import deleteDashboard from "../../controllers/dashboard/delete";
 import isAuthorizedRead from "../../middleware/dashboard/isAuthorizedRead";
 import isAuthorizedWrite from "../../middleware/dashboard/isAuthorizedWrite";
 import { dashboardService } from "../../bootstrap/services";
@@ -14,21 +14,21 @@ const dashboardRoute = express.Router();
 dashboardRoute.use("/:dashboardId/list", listDashboardRoute);
 
 //GET
-dashboardRoute.get("/", getAllDashboard(dashboardService));
+dashboardRoute.get("/", getAll(dashboardService));
 dashboardRoute.get(
 	"/:dashboardId",
 	isAuthorizedRead(dashboardService),
-	getByIdDashboard(dashboardService)
+	getById(dashboardService)
 );
 
 //POST
-dashboardRoute.post("/", createDashboard(dashboardService));
+dashboardRoute.post("/", create(dashboardService));
 
 //PUT
 dashboardRoute.put(
 	"/:dashboardId",
 	isAuthorizedWrite(dashboardService),
-	updateDashboard(dashboardService)
+	update(dashboardService)
 );
 
 //DELETE
