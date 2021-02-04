@@ -8,18 +8,18 @@ import deleteTask from "../../controllers/task/deleteTask";
 import { dashboardService, taskService } from "../../bootstrap/services";
 import getAllTaskByListId from "../../controllers/task/getAllTaskByListId";
 
-const taskDashboardRoute = express.Router({ mergeParams: true });
+const taskListRoute = express.Router({ mergeParams: true });
 
 //GET--------------------------------
 //Get all tasks by list ID
-taskDashboardRoute.get(
+taskListRoute.get(
 	"/",
 	isAuthorizedRead(dashboardService),
 	getAllTaskByListId(taskService)
 );
 
 //Get task in dashboard by taskID
-taskDashboardRoute.get(
+taskListRoute.get(
 	"/:taskId",
 	isAuthorizedRead(dashboardService),
 	getTaskById(taskService)
@@ -27,7 +27,7 @@ taskDashboardRoute.get(
 
 //POST-------------------------------
 //Post task in dashboard
-taskDashboardRoute.post(
+taskListRoute.post(
 	"/",
 	isAuthorizedWrite(dashboardService),
 	createTask(taskService)
@@ -35,7 +35,7 @@ taskDashboardRoute.post(
 
 //PUT--------------------------------
 //Update task by Id
-taskDashboardRoute.put(
+taskListRoute.put(
 	"/:taskId",
 	isAuthorizedWrite(dashboardService),
 	updateTask(taskService)
@@ -43,10 +43,10 @@ taskDashboardRoute.put(
 
 //DELETE-----------------------------
 //Delete task by Id
-taskDashboardRoute.delete(
+taskListRoute.delete(
 	"/:taskId",
 	isAuthorizedWrite(dashboardService),
 	deleteTask(taskService)
 );
 
-export default taskDashboardRoute;
+export default taskListRoute;
