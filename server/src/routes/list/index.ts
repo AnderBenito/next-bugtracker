@@ -1,9 +1,9 @@
 import express from "express";
-import getAllList from "../../controllers/list/getAllList";
+import getAll from "../../controllers/list/getAll";
 import { listService } from "../../bootstrap/services";
 
 const listRoute = express.Router();
 
-listRoute.get("/", getAllList(listService));
+listRoute.get("/", getAll(listService));
 
 export default listRoute;
