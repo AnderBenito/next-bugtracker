@@ -4,10 +4,10 @@ import TaskService from "src/services/task/TaskService";
 
 export default function (taskService: TaskService) {
 	return async (req: Request, res: Response) => {
-		const { dashboardId } = req.params;
+		const { listId } = req.params;
 
 		const task: Task = {
-			dashboardId,
+			listId,
 			...req.body,
 		};
 
