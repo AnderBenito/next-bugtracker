@@ -2,6 +2,7 @@ import List, { ListSelect } from "../../models/List";
 
 export default interface IListRepository {
 	getAll: () => Promise<List[]>;
+	getAllByUserId: (userId: string) => Promise<List[]>;
 	getAllWithTasks: () => Promise<ListSelect[]>;
 	getAllByDashboardId: (dashboardId: string) => Promise<List[]>;
 	getAllWithTasksByDashboardId: (dashboardId: string) => Promise<ListSelect[]>;

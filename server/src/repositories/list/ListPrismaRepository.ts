@@ -12,6 +12,10 @@ export default class ListPrismaRepository implements IListRepository {
 		return this.prisma.list.findMany();
 	}
 
+	getAllByUserId(userId: string) {
+		return this.prisma.list.findMany({ where: { dashboard: { userId } } });
+	}
+
 	getAllWithTasks() {
 		return this.prisma.list.findMany({ include: { tasks: true } });
 	}

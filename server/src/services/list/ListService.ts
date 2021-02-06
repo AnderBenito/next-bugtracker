@@ -13,6 +13,10 @@ export default class ListService {
 		return await this.repository.getAll();
 	}
 
+	async getAllByUserId(userId: string) {
+		return await this.repository.getAllByUserId(userId);
+	}
+
 	async getAllWithTasks() {
 		return await this.repository.getAllWithTasks();
 	}
