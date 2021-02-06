@@ -10,6 +10,9 @@ import {
 } from "./repositories";
 
 export const userService = new UserService(userRepository);
-export const dashboardService = new DashboardService(dashboardRepository);
+export const dashboardService = new DashboardService(
+	dashboardRepository,
+	listRepository
+);
 export const listService = new ListService(listRepository);
 export const taskService = new TaskService(taskRepository);
