@@ -12,6 +12,10 @@ export default class TaskService {
 		return await this.repository.getAll();
 	}
 
+	async getAllByUserId(userId: string) {
+		return await this.repository.getAllByUserId(userId);
+	}
+
 	async getAllByListId(listId: string) {
 		return await this.repository.getAllByListId(listId);
 	}
