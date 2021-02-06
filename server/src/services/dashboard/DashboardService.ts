@@ -1,13 +1,21 @@
 import Dashboard from "../../models/Dashboard";
+import List from "../../models/List";
 import IDashboardRepository from "../../repositories/dashboard/IDashboardRepository";
+import IListRepository from "../../repositories/list/IListRepository";
+import DashboardCreateError from "./errors/DashboardCreateError";
 import DashboardNotFound from "./errors/DashboardNotFound";
 import DashboardUpdateError from "./errors/DashboardUpdateError";
 
 export default class DashboardService {
 	private repository: IDashboardRepository;
+	private listRepository: IListRepository;
 
-	constructor(repository: IDashboardRepository) {
+	constructor(
+		repository: IDashboardRepository,
+		listRepository: IListRepository
+	) {
 		this.repository = repository;
+		this.listRepository = listRepository;
 	}
 
 	async getAll() {
@@ -27,9 +35,14 @@ export default class DashboardService {
 	}
 
 	async create(dashboard: Dashboard) {
-		const newDashboard = await this.repository.create(dashboard);
-
-		return newDashboard;
+		//Create dashboard and default lists
+		try {
+			const newDashboard = await this.repository.create(dashboard);
+			await this.createDefaultLists(newDashboard.id!);
+			return newDashboard;
+		} catch (error) {
+			throw new DashboardCreateError(error.message);
+		}
 	}
 
 	async update(dashboard: Dashboard) {
@@ -52,5 +65,24 @@ export default class DashboardService {
 			console.error(error);
 			throw new DashboardNotFound(id);
 		}
+	}
+
+	private async createDefaultLists(dashboardId: string) {
+		const defaultTodo: List = {
+			title: "To do",
+			dashboardId,
+		};
+		const defaultInProgress: List = {
+			title: "In Progress",
+			dashboardId,
+		};
+		const defaultDone: List = {
+			title: "Done",
+			dashboardId,
+		};
+
+		await this.listRepository.create(defaultTodo);
+		await this.listRepository.create(defaultInProgress);
+		await this.listRepository.create(defaultDone);
 	}
 }
