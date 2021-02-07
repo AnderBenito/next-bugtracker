@@ -23,6 +23,7 @@ model User {
 model Dashboard {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   title     String
   isPublic  Boolean  @default(false)
   color     String?
@@ -35,7 +36,9 @@ model Dashboard {
 model List {
   id          String     @id @default(uuid())
   createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   title       String
+  order       Int
   color       String?
   tasks       Task[]
   //Dashboard foreign key
@@ -46,9 +49,10 @@ model List {
 model Task {
   id         String   @id @default(uuid())
   createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   title      String
   content    String
-  category   String
+  order      Int
   labels     String[]
   colorLabel String?
   //List foreign key
