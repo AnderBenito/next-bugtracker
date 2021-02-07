@@ -23,7 +23,8 @@ export default class ListPrismaRepository implements IListRepository {
 	getAllWithTasksByDashboardId(dashboardId: string) {
 		return this.prisma.list.findMany({
 			where: { dashboardId },
-			include: { tasks: true },
+			include: { tasks: { orderBy: { order: "asc" } } },
+			orderBy: { order: "asc" },
 		});
 	}
 
@@ -35,6 +36,13 @@ export default class ListPrismaRepository implements IListRepository {
 		return this.prisma.list.findUnique({
 			where: { id },
 			include: { tasks: true },
+		});
+	}
+
+	getByLastOrder(dashboardId: string) {
+		return this.prisma.list.findFirst({
+			where: { dashboardId },
+			orderBy: { order: "desc" },
 		});
 	}
 

@@ -38,6 +38,15 @@ export default class ListService {
 	}
 
 	async create(list: List) {
+		//Find las list of the dashboard
+		const greaterOrderList = await this.repository.getByLastOrder(
+			list.dashboardId!
+		);
+
+		//Asing greater order
+		list.order = greaterOrderList ? greaterOrderList.order + 1 : 0;
+
+		//Create
 		try {
 			return await this.repository.create(list);
 		} catch (error) {
