@@ -18,12 +18,19 @@ export default class TaskPrismaRepository implements ITaskRepository {
 		});
 	}
 
+	getAllByListId(listId: string) {
+		return this.prisma.task.findMany({ where: { listId } });
+	}
+
 	getById(id: string) {
 		return this.prisma.task.findUnique({ where: { id } });
 	}
 
-	getAllByListId(listId: string) {
-		return this.prisma.task.findMany({ where: { listId } });
+	getByLastOrder(listId: string) {
+		return this.prisma.task.findFirst({
+			where: { listId },
+			orderBy: { order: "desc" },
+		});
 	}
 
 	create(task: Task) {

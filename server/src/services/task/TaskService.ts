@@ -29,6 +29,13 @@ export default class TaskService {
 	}
 
 	async create(task: Task) {
+		//Get task with max order
+		const maxOrderTask = await this.repository.getByLastOrder(task.listId!);
+
+		//Asing greater order
+		task.order = maxOrderTask ? maxOrderTask.order + 1 : 0;
+
+		//Create
 		return await this.repository.create(task);
 	}
 
