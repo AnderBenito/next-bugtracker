@@ -17,8 +17,9 @@ export default class DashboardPrismaRepository implements IDashboardRepository {
 		return this.prisma.dashboard.findMany({
 			where: { userId },
 			include: {
-				lists: true,
+				lists: { orderBy: { order: "asc" } },
 			},
+			orderBy: { updatedAt: "desc" },
 		});
 	}
 
