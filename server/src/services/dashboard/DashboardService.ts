@@ -70,14 +70,17 @@ export default class DashboardService {
 	private async createDefaultLists(dashboardId: string) {
 		const defaultTodo: List = {
 			title: "To do",
+			order: 0,
 			dashboardId,
 		};
 		const defaultInProgress: List = {
 			title: "In Progress",
+			order: 1,
 			dashboardId,
 		};
 		const defaultDone: List = {
 			title: "Done",
+			order: 2,
 			dashboardId,
 		};
 

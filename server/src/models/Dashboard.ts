@@ -3,6 +3,7 @@ import List from "./List";
 export default interface Dashboard {
 	id?: string;
 	createdAt?: Date;
+	updatedAt?: Date;
 	title: string;
 	color?: string | null;
 	isPublic: boolean;
