@@ -17,7 +17,7 @@ googleRoute.get(
 		console.log(req.user);
 
 		//Redirect to frontend
-		res.redirect("/");
+		res.redirect(process.env.FRONTEND_URL!);
 	}
 );
 
